@@ -8,7 +8,7 @@ struct MenuView: View {
     
     var body: some View {
         VStack {
-            Text("groupStateObserver.isEligibleForGroupSession is \(groupStateObserver.isEligibleForGroupSession)")
+            Text("groupStateObserver.isEligibleForGroupSession is \(String(describing: groupStateObserver.isEligibleForGroupSession))")
             Button {
                 print("Starting as SharePlay", groupStateObserver.isEligibleForGroupSession)
                 
