@@ -31,15 +31,29 @@ struct ContentView: View {
             enlarge.toggle()
         })
         .toolbar {
-            ToolbarItemGroup(placement: .bottomOrnament) {
+            ToolbarItemGroup(placement: toolbarPlacement) {
                 VStack (spacing: 12) {
                     Toggle("Enlarge RealityView Content", isOn: $enlarge)
                 }
             }
         }
+        
+        var toolbarPlacement: ToolbarItemPlacement {
+            #if os(visionOS)
+            .bottomOrnament
+            #else
+            .automatic
+            #endif
+        }
     }
 }
 
+#if os(visionOS)
 #Preview(windowStyle: .volumetric) {
     ContentView()
 }
+#else
+#Preview {
+    ContentView()
+}
+#endif

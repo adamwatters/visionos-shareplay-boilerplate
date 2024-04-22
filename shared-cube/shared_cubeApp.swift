@@ -10,12 +10,22 @@ import SwiftUI
 @main
 struct shared_cubeApp: App {
     var body: some Scene {
+        
+        #if os(visionOS)
         WindowGroup {
-            MenuView()
+            MenuView().glassBackgroundEffect()
         }.windowStyle(.plain)
         
         WindowGroup(id: "volume") {
             ContentView()
         }.windowStyle(.volumetric).defaultSize(width: 1, height: 1, depth: 1, in: .meters)
+        #else
+        WindowGroup {
+            VStack {
+                MenuView()
+                ContentView()
+            }
+        }
+        #endif
     }
 }
